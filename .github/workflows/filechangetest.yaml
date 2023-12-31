@@ -1,0 +1,39 @@
+# This is a test for the changed-files 
+
+name: Test for changed files workflow
+
+on:
+    workflow_dispatch:
+    push:
+        paths:
+        - 'zulu-8/zulu-8.nuspec'
+
+jobs:
+    changed_files:
+        runs-on: ubuntu-latest  # windows-latest || macos-latest
+        name: Test changed-files
+        steps:
+          - uses: actions/checkout@v4
+            with:
+              fetch-depth: 2  # OR "2" -> To retrieve the preceding commit.
+    
+      # Example 3
+          - name: Get all test, doc and src files that have changed
+            id: changed-files-yaml
+            uses: tj-actions/changed-files@v41
+            with:
+              files_yaml: |
+                liberica:
+                  - 'liberica*.*.nuspec'
+                zulu:
+                  - 'zulu*/*.nuspec'
+              # Optionally set `files_yaml_from_source_file` to read the YAML from a file. e.g `files_yaml_from_source_file: .github/changed-files.yml`
+          - name: Run step if test file(s) change
+              # NOTE: Ensure all outputs are prefixed by the same key used above e.g. `test_(...)` | `doc_(...)` | `src_(...)` when trying to access the `any_changed` output.
+            if: steps.changed-files-yaml.outputs.test_any_changed == 'true'  
+            env:
+              TEST_ALL_CHANGED_FILES: ${{ steps.changed-files-yaml.outputs.test_all_changed_files }}
+            run: |
+                echo "One or more test file(s) has changed."
+                echo "List all the files that have changed: $TEST_ALL_CHANGED_FILES"
+            
