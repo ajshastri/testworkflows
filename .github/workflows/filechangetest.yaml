@@ -24,7 +24,7 @@ jobs:
             with:
               files_yaml: |
                 liberica:
-                  - 'liberica*.*.nuspec'
+                  - 'liberica*/*.nuspec'
                 zulu:
                   - 'zulu*/*.nuspec'
               # Optionally set `files_yaml_from_source_file` to read the YAML from a file. e.g `files_yaml_from_source_file: .github/changed-files.yml`
