@@ -15,7 +15,7 @@ jobs:
         steps:
           - uses: actions/checkout@v4
             with:
-              fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+              fetch-depth: 2  # OR "2" -> To retrieve the preceding commit.
     
       # Example 3
           - name: Get all test, doc and src files that have changed
