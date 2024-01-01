@@ -6,7 +6,7 @@ on:
     workflow_dispatch:
     push:
         paths:
-        - 'zulu-8/zulu-8.nuspec'
+        - 'zulu*/zulu*.nuspec'
 
 jobs:
     changed_files:
