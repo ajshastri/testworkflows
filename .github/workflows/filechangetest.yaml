@@ -18,7 +18,7 @@ jobs:
       # Example 3
           - name: Get all test, doc and src files that have changed
             id: changed-files-yaml
-            uses: tj-actions/changed-files@v41
+            uses: tj-actions/changed-files@v46
 
           - name: Run step if test file(s) change
               # NOTE: Ensure all outputs are prefixed by the same key used above e.g. `test_(...)` | `doc_(...)` | `src_(...)` when trying to access the `any_changed` output.
